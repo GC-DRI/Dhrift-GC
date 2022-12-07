@@ -30,7 +30,7 @@ dependencies:
 authors:
     current: 'Zach Lloyd'
     past: 'Lisa Rhody'
-    # authors should correspond to the 'title' in the YAML of the file in the authors folder. You can create a new author file for yourself  in the authors folder. 
+    # authors/editors should correspond to the 'title' in the YAML of the file in the authors folder. You can create a new author file for yourself in the authors folder. 
 
 editors:
     current: 'Di Yoong'
@@ -121,9 +121,9 @@ print(greeting)
 
 3. A download button: If you have files you'd like the participant to download, you can add a download button to your lessons with the appropriate files by using the following syntax:
 
-<Download files='your_file1 your_file2'><br/>
+<Download files='your_file1, your_file2'><br/>
 
-Here, `your_file1` and `your_file2` are the two files to download (you can add as many as you'd like). The break tag at the end is just to add some space after the button. NOTE: You must include copies of the files indicated in the `uploads` folder.
+Here, `your_file1` and `your_file2` are the two files to download (you can add as many as you'd like, just separate them with commas). The break tag at the end is just to add some space after the button. NOTE: You must include copies of the files indicated in the `uploads` folder.
 
 <!--- Most workshop lessons should include some form of a challenge, a solution, and an evaluation. See below for an example of each. --->
 

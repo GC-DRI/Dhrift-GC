@@ -11,7 +11,7 @@ estimated time:
 dependencies: 
     workshop prerequisites: 
         python:
-            excerpt: (required) This workshop relies heavily on concepts from the Python workshop, and having a basic understanding of how to use the commands discussed in the workshop will be central for anyone who wants to learn about text analysis with Python and NLTK.
+            excerpt: (required) This workshop relies heavily on concepts from the Python workshop, and having a basic understanding of how to use the commands discussed in the workshop will be central for anyone who wants to undertake this workshop effectively.
             required: true
     installations:
         pythonguide: 
@@ -20,7 +20,6 @@ dependencies:
         visual-studio-code: 
             excerpt: (Recommended) You can use any plain text editor, but for our purposes Visual Studio Code ("VS Code") will be used.
             recommended: true
-
 authors:
     current: 'Zach Lloyd'
 ---
@@ -33,7 +32,9 @@ In this workshop, you will learn how to create very basic simulations in Python.
 
 As mentioned on the front page, all that is required for this workshop is an installed version of [Python 3.x](https://www.python.org/downloads/) and [VSCode](https://code.visualstudio.com/). The full source code and a .txt file for displaying output (more on that later) are provided in the repo for you, but I encourage you to work through (i.e., type) out the code yourself to get used to the process.
 
----
+I encourage you to attempt to code along with the workshop, but if you get stuck or want to see the full code, you can download the full source code for each program we'll create using the button below:
+
+<Download files='DRI_DiceSim.py, DRI_CritterSim.py'><br/>
 
 ## Part 1 - Throwing Some Dice
 
@@ -56,7 +57,7 @@ Concepts we'll focus on:
 - Printing results
 
 
-### Getting Started
+## Getting Started
 
 Create a new Python file called `DiceSim.py`. Because we will be using random numbers, and because we want to perform statistical methods on values, we will need to import two files at the top:
 
@@ -68,7 +69,7 @@ This import will allow us to use Python's `random` module. _Note: If you have us
 
 Because we will be referencing the statistics library a few times in our code, we can `import` it `as stats`, just to shorten what we have to type every time.
 
-### Creating Our Class
+## Creating Our Class
 
 Next, let's create a `class` to represent our die object.  You can think of a class like a user-defined blueprint or prototype from which objects are created. Classes provide a means of bundling data and functionality together. Creating a new class creates a new type of object, allowing new instances of that type to be made. Each class instance can have features attached to it for maintaining and modifying its state.
 
@@ -91,7 +92,7 @@ Our other parameter is `sides`. We include this in our `__init__` because every 
 
 Next, we define our parameters, prefixed with `self`. Any variable prefixed with `self` is available to every method in the class, and we’ll also be able to access these variables through any instance created from the class. The line `self.sides`, for instance, takes the value associated with the parameter `sides` and assigns it to the local variable `sides`, which is then attached to the instance being created.
 
-### Creating Our Method
+## Creating Our Method
 
 Next, let's create a __method__ that allows us to roll our die object. Make sure you are indenting the method so that it is _within_ our die class.
 
@@ -103,7 +104,7 @@ Next, let's create a __method__ that allows us to roll our die object. Make sure
 
 We first define (`def`) our method, and pass in the parameter `self`, which allows us to access the data members of our class. Next, we generate a random number using the `random` library. The `randint` function returns an integer in a range between the first value (1) and the second (self.sides). We will then `return` the value from the method so we can check the results.
 
-### Displaying Results
+## Displaying Results
 
 Now that we have our class and our method set up, we can create (or _instantiate_) a new die object and give it a roll:
 
@@ -118,7 +119,7 @@ Next, we use a `print` statement to display the results of our roll method. To c
 
 And that's it! You have successfully created a new die object that can be rolled.  If you check the results in your terminal, you should see your roll displayed.
 
-#### Challenge!
+## Challenge
 
 If the user rolls a six, tell them that they won a prize. If they didn't roll a 6 display, that they're a loser.
 
@@ -132,11 +133,9 @@ else:
     print(f"You rolled a {r}, not nearly as cool as a 6...")
 ```
 
----
+# The Dice Simulator
 
-## The Dice Simulator
-
-### Creating a New Class
+## Creating a New Class
 
 Let's say that we wanted to throw our die object 1000 times (instead of just once) and analyze the results of all the rolls. We can simulate this process by creating a new class.
 
@@ -160,7 +159,7 @@ class DiceSim:
 
 We will pass in our two parameters for the class, one for our roll method and the other for the number of iterations we want the simulator to run. Like before, we prefix each variable with `self` so that we can access the values from anywhere within our class. We also create a new empty list `results`, so that we have a place to store the results of our dice rolls. We also have one method call, `run()`. Calling a method in the initializer area like this means that it will run every time a new object of the `DiceSim` class is created.
 
-### Creating Our Class Methods
+## Creating Our Class Methods
 
 Next, let's create the methods for our simulator class. We will want one to run our roll method, and one to analyze and print our results:
 
@@ -207,7 +206,7 @@ First, we create a new instance of our `Die` class (remember, you can create as 
 
 And that's it! If you run the program in your terminal, you should see a report of the results of the simulation.
 
-### Key Terms
+## Key Terms
 
 - __class__: Classes allow us to create new types of software objects, with their own attributes and functionalities.
 - __method__: Methods are functions that belong to a class. They are called using __.__ (dot) notation.
@@ -216,7 +215,7 @@ And that's it! If you run the program in your terminal, you should see a report 
 
 ---
 
-## Part 2 - Critter Simulator
+# Part 2 - Critter Simulator
 
 __Goal:__  Create a simulation that tracks the population growth of a proposed (imaginary) species of Critter, taking into account a variety of biological and environmental factors.
 
@@ -299,7 +298,7 @@ We begin by defining our class, passing the `self` parameter like usual. Our oth
 
 Now that we have set up some very basic characteristics of our critters, we will want to let them perform some actions. We can do this by writing __methods__. Let's create two very basic methods, `gather()` and `reproduce()`.
 
-### Gather()
+## Gather()
 
 Because we will certainly want our critters to eat, let's create a method that allows them to gather food. Make sure you properly indent your method so it is contained _within_ the Critter class.
 
@@ -335,7 +334,7 @@ Next, still in our gather method body, we will want to (unfortunately) reduce ou
 
 As mentioned, for each critter to survive they will need exactly one unit of food per year. So, in this method, we first check to see if our food stockpile is smaller than the amount of existing critters. If so, we use the `del` statement to remove a slice of our critter list. As you can see, we are taking a slice starting from the beginning of the list and removing an amount equal to the excess amount of critters. While this is not quite as random as it could be (because we are always starting at the beginning of our list), it would make sense that more elderly critters are not able to reach the food stockpile as quickly as their younger, more able counterparts. If some critters starve, then we display a message telling us so. If no critters starve, we simply remove an amount of food equal to the critter population, and store the surplus for next year. We then print our overall results.
 
-### Reproduce()
+## Reproduce()
 
 For a population growth simulation, another basic action our critters should take is to reproduce:
 
@@ -351,7 +350,7 @@ For a population growth simulation, another basic action our critters should tak
 
 Our method will take the two fertility parameters we established before. Next, using a series of nested `for` loops, we'll take a look at each critter in the list to see if they are suitable candidates for giving birth. We first check if they are female, and if so, check if they are within our circumscribed fertility age. If both of these conditions are satisfied, we'll then give the critter a 20% chance of getting pregnant with a simple `random` calculation. If the result is a 1, we'll create a new critter and append it to the critter list with an age of 0.   
 
-#### Challenge!
+## Challenge!
 
 Occasionally, new critters may not be born during a year. To analyze this, once the reproduction cycle has finished, print out a short message to the terminal saying "New critters have been born!", if indeed new critters were born that year.
 
@@ -376,13 +375,13 @@ __Solution:__  At the start of the reproduce method, create a new local variable
 
 Note that you would not want to print out the message inside the `for` loop, because then you would display the message _every single_ time a new critter is created (making your terminal readout very messy), rather than after _all_ new critters are created.
 
-## Simulation Functions
+# Simulation Functions
 
 Our next step will be to write the functions that will control our simulation in a systematic way. I say functions (not methods), because these will live outside of our Critter class (in fact, we'd likely want to create a _new_ Simulation class to control all these aspects). Because our program is relatively simple, however, we'll simplify our code using functions.
 
 Let's write two new functions: `popSim()`, to initially populate our simulation with critters, and `runYear()`, to simulate each yearly run-through of the simulation.
 
-### Populate Simulator()
+## Populate Simulator()
 
 ```python
 # function to initially populate our critter list with Critter objects
@@ -392,7 +391,7 @@ def popSim():
 ```
 To begin our simulation, we'll start by calling the `popSim()` function. The function takes our `startPopulation` variable defined in our globals above, and populates our critterList with that many objects. To give our simulation an added element of randomness, each starting critter will be created with a random age between 2 and 45.
 
-### Run Year()
+## Run Year()
 
 Next we will want to create the function that allows our simulation to loop each year:
 
@@ -438,7 +437,7 @@ while len(critterList) < 100 and len(critterList) > 1:
 
 We first print a message notifying the user the simulation has started. Next, we run our `popSim()` function to initially populate our critter species. Then, we use a `while` loop to make sure the program runs until certain conditions are satisfied. Our conditions will be population limits:  so, the simulation will terminate once either all critters have died (until the population reaches 0), or until the population reaches over 100. Until this happens, we will run our `runYear()` function, and increase the current year.
 
-### Displaying Output in VSCode
+## Displaying Output in VSCode
 
 We'll be logging a lot of info to the console when we run our program, so that it can become hard to read the entire log of the output. VSCode has a default limitation to how much output can be displayed.
 
@@ -448,7 +447,7 @@ Two ways to address this:
 
 2. Write your output to a .txt file instead of the terminal. In the folder where your Python file lives, create a new blank .txt file called sim_output.txt. Then, instead of running your code like usual, type `python yourFileName.py > sim_output.txt` into the VSCode terminal and hit Enter. You should see a silent success in the terminal. Now, if you double-click to open the .txt file, you should see it populated with your program's output.
 
-### Key Terms
+## Key Terms
 
 - __global variables__: Unlike local variables, which are limited in scope, global variables can be accessed anywhere in your programs.
 - __len()__: The length function allows us to catch the number of elements in a given list.
