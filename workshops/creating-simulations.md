@@ -56,7 +56,6 @@ Concepts we'll focus on:
 - Using stats methods
 - Printing results
 
-
 ## Getting Started
 
 Create a new Python file called `DiceSim.py`. Because we will be using random numbers, and because we want to perform statistical methods on values, we will need to import two files at the top:
@@ -65,6 +64,7 @@ Create a new Python file called `DiceSim.py`. Because we will be using random nu
 import random
 import statistics as stats
 ```
+
 This import will allow us to use Python's `random` module. _Note: If you have used other programming languages you might be familiar of the concept of [seeding](https://www.w3schools.com/python/ref_random_seed.asp).  For our purposes, we do not need to explicitly seed random number generation when using Python's random library, as it will use either current system time or OS random resources by default._
 
 Because we will be referencing the statistics library a few times in our code, we can `import` it `as stats`, just to shorten what we have to type every time.
@@ -202,6 +202,7 @@ Our last step is to create a new instance of our simulator class:
 die1 = Die(6)
 sim = DiceSim(die1.roll, 1000)
 ```
+
 First, we create a new instance of our `Die` class (remember, you can create as many new objects of a class as you'd like!) and give it 6 sides. Then, we create a new `sim` object. As parameters, we pass in our roll method and 1000, for the number of iterations to run.
 
 And that's it! If you run the program in your terminal, you should see a report of the results of the simulation.
@@ -276,8 +277,6 @@ As you can see, each variable is commented to give some context for its use. The
 
 `fertility_y` constitutes the highest possible age at which a critter can give birth (so they're not too old). To start, let's keep the fertility period rather short and set the maximum age to 20 (we can always adjust it later).
 
-
-
 `critterList` is a list that will contain the entire population of our critters. We will access and modify this list continuously in order to assess our total population growth.
 
 ## Creating the Critter Class
@@ -350,7 +349,7 @@ For a population growth simulation, another basic action our critters should tak
 
 Our method will take the two fertility parameters we established before. Next, using a series of nested `for` loops, we'll take a look at each critter in the list to see if they are suitable candidates for giving birth. We first check if they are female, and if so, check if they are within our circumscribed fertility age. If both of these conditions are satisfied, we'll then give the critter a 20% chance of getting pregnant with a simple `random` calculation. If the result is a 1, we'll create a new critter and append it to the critter list with an age of 0.   
 
-## Challenge!
+## Challenge
 
 Occasionally, new critters may not be born during a year. To analyze this, once the reproduction cycle has finished, print out a short message to the terminal saying "New critters have been born!", if indeed new critters were born that year.
 

@@ -1,7 +1,7 @@
 ---
 title: Workshop Template
 excerpt: The excerpt is a short description of what your workshop is and what it will cover.
-
+cover_image: /images/workshops/img2.jpg
 learning objectives:
     - Here's one learning objective.
     - Here's another learning objective.
@@ -27,10 +27,11 @@ dependencies:
             excerpt: (Recommended) You can use any plain text editor, but for our purposes Visual Studio Code ("VS Code") will be used.
             recommended: true
 
+# example authors and editors
 authors:
     current: 'Zach Lloyd'
     past: 'Lisa Rhody'
-    # authors/editors should correspond to the 'title' in the YAML of the file in the authors folder. You can create a new author file for yourself in the authors folder. 
+    # authors/editors should correspond to the 'title' in the YAML (metadata) of the file in the authors folder. You can create a new author file for yourself in the authors folder as well. 
 
 editors:
     current: 'Di Yoong'
