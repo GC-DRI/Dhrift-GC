@@ -687,6 +687,7 @@ header a:hover {
 .frontpage>h1 {
   font-size: 3rem;
   margin-bottom: 20px;
+  line-height: 1.2;
 }
 
 .excerpt {
