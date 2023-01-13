@@ -21,7 +21,7 @@ export default function FrontPage(currentFile, allFiles) {
       const insight = insights.find(insight => insight.slug === key)
       const guide = installGuides.find(guide => guide.slug === key)
       // const author = authors.find(author => author.slug === key)
-      const which = workshop ? workshop : ((insight ? insight : (guide ? guide : (author ? author : null))))
+      const which = workshop ? workshop : ((insight ? insight : (guide ? guide : /*(author ? author :*/ null)))
 
       const allItems = {
         [key]: {

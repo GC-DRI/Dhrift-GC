@@ -7,4 +7,4 @@ excerpt: 'Authors!'
 
 ![Zach Lloyd](/images/authors/zach-lloyd.jpg)
 
-Some "about me" text here.
+Zachary Lloyd is a PhD student in Comparative Literature at CUNY Graduate Center and a current Digital Fellow. He is an adjunct instructor at Brooklyn College and NYU.

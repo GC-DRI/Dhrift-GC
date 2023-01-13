@@ -415,7 +415,7 @@ def runYear(food, resources, fertility_x, fertility_y):
     print(f"After reproducing and/or any disasters, critter population is currently {len(critterList)}.")
 ```
 
-We will pass 4 arguments into this function:  our food, resource, and fertility values. The reason we need to get at these values is because we will want to then pass them into our Critter method calls. That is the first step we take: calling our `gather()` and `reproduce()` functions, at the beginning of each year. Because we are calling these methods outside of their class, we need to prefix the calls with our class name `Critter`.
+We will pass 4 arguments into this function:  our food, resource, and fertility values. The reason we need to get at these values is because we will want to then pass them into our Critter method calls. That is the first step we take: calling our `gather()` and `reproduce()` methods, at the beginning of each year. Because we are calling these methods _outside_ of their class, we need to prefix the calls with our class name `Critter`.
 
 Next, we will age our existing critters by one year. For now, let's set their maximum age to 50 years--once they are over 50 years, we will assume they die of old age, and we `remove` the critter from our list.
 
