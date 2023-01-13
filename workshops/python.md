@@ -27,13 +27,8 @@ dependencies:
             excerpt: (Recommended) You can use any plain text editor, but for our purposes Visual Studio Code ("VS Code") will be used.
             recommended: true
 
-authors:
-    current: 'Kalle Westerling'
-    past: 'Lisa Rhody'
-
 editors:
-    current: 'Di Yoong'
-    past: 'Stephen Zweibel'
+    current: 'Zach Lloyd'
 
 readings:
     - Want to learn programming, but not convinced that the Python language is the right language? Check out [Five Reasons Why Learning Python Is The Best Decision](https://medium.com/datadriveninvestor/)
@@ -372,6 +367,7 @@ What are the differences between the terminal, REPL, and text editor? Select the
 - You can run scripts from the **terminal** that were written on the text editor. *
 - The **REPL** allows you to save scripts for later use.
 - The **text editor** allows you to test code on the fly.
+- The **REPL** is a text editor.
 </Quiz>
 
 ## Keywords
@@ -422,7 +418,7 @@ __If the error is a syntax error:__
 
 __If the error is a traceback error:__
 
-1. First look at the line where the error occured, then consider the general category of error. What could have gone wrong?
+1. First look at the line where the error occurred, then consider the general category of error. What could have gone wrong?
 2. If the error is a name error (NameError), check your spelling.
 3. Try copying the last line of the error and pasting it into Google. You'll often find a quick solution this way.
 
@@ -499,7 +495,7 @@ If you get an error, what can you do to debug it? Select all that apply:
 - If it's a _syntax error_, look for the caret as a starting point.*
 - If it's a _traceback error_, make sure all your variables are defined.*
 - Copy the error message into a Google search.*
-- Run spell check on your code.*
+- Make sure your variable names are spelled correctly wherever referenced or utilized.*
 </Quiz>
 
 ## Keywords
@@ -513,7 +509,7 @@ Do you remember the glossary terms from this section?
 
 Broadly defined, a function is a block of reusable code that performs a specific task. Often, a function takes an input, transforms the input, and returns an output. Imagine, for instance, a [penny press](https://en.wikipedia.org/wiki/Elongated_coin) at a popular tourist attraction that accepts a penny (the input), flattens and embosses the penny (the transformation), and spits out an elongated coin with a new design, perhaps an image of the Statue of Liberty (the output)! Or, for those of you who remember high school algebra, the function `f(x) = x + 1` means that given an input `x`, the function will return `x + 1`. For example, if I substituted `2` for `x`, my function would read `f(2) = 2 + 1`, or `f(2) = 3`. In this case, my input was `2`, the transformation was to add `1`, and the output was `3`. These are the basic concepts that make up a function in Python as well! 
 
-## Writing your first function
+## Writing Your First Function
 
 Let's write a Python function that prints the output from our algebraic equation `f(x) = x + 1` above. Try running the code in the editor below. (If you accidentally modify the code, you can hit the `REVERT` button to reset it.)
 
@@ -569,7 +565,7 @@ def add_one(x):
 print(add_one(2))
 ```
 
-## Writing your second function
+## Writing Your Second Function
 
 Our functions do not have to be "mathematical" in nature. Let's say that I wanted to say a friendly hello, but didn't want to type out a long sentence every time I wanted to do so. We could automate this process with a function. In the code editor below, write the following lines:
 
@@ -586,9 +582,6 @@ First we define our `greet()` function, and add a line to print to the screen. L
 
 How could we change our greeting function to say hello to a specific person? Hint: your print statement will need to use string interpolation. We did this in "3. Variables" when we assigned y to "hello" `y = "hello"`, and then added `y + " and goodbye"`, which yielded the result `"hello and goodbye"`.
 
-<EditorWithTabs>
-</EditorWithTabs>
-
 ## Solution
 
 <CodeEditor>
@@ -601,7 +594,7 @@ As you can see, the result of calling this function prints `"Hello Sarah! How ar
 
 ## Evaluation
 
-Which of the following are not true about a function?:
+Which of the following are _not_ true about a function?:
 
 <Quiz>
 - A function can be reused
@@ -839,7 +832,6 @@ What are different ways for describing what a "for loop" can do?
 - for each item in a list, multiply it against itself.*
 - print the contents of a list.*
 - add a new item to a list.
-- loop through characters in a string.
 </Quiz>
 
 ## Keywords
@@ -1005,7 +997,7 @@ else:
     print("I don't know what field you're talking about! I'm just a little program...")
 </CodeEditor>
 
-Now, that we understand a bit about how `input()` works, let's use it to improve our book application. We are going to use `input()` to ask for the field before displaying the output. To do this, add one more line of code in the editor above that sets the `field` variable to an `input()`. Make sure you include a little prompt that asks the user what book they want to select or read that day.
+Now, that we understand a bit about how `input()` works, let's use it to improve our book application. We are going to use `input()` to ask for the field before displaying the output. To do this, rework the code in the editor above so that it sets the `field` variable to an `input()`. Make sure you include a little prompt that asks the user what book they want to select or read that day.
 
 ## Solution
 
@@ -1152,8 +1144,6 @@ Select the following statements that truly describe `sort()`, `append()`, and `p
 </Quiz>
 
 &nbsp;
-
-__Advanced question:__ If you `sort()` the library in between adding and popping a book, you'll end up with a different list than if you didn't run `sort()` in between `append()` and `pop()`. Can you guess why?
 
 ## Keywords
 
@@ -1309,10 +1299,12 @@ Once you get the loop to work, you can add more `elif` statements to add more bo
         elif response == "moar":
             library.append("Nightwood")
             print(library)
-            break
         elif response == "remove":
             library.pop()
             print(library)
+        elif response = "exit":
+            print(library)
+            break
         else:
             print("I don't know what you want me to do!")
     ```
@@ -1385,9 +1377,7 @@ Now, each time you run the code, you should see a different motivational phrase 
 
 ## Challenge
 
-1. As with our library app, this positive saying generator could be improved by making it so the program doesn't have to run again every time to get new output. Add a while loop for the final version. Remember to include a `break` statement or another way for the loop to end (so you are not creating an infinite loop). You can read more [about while loops here](https://www.w3schools.com/python/python_while_loops.asp).
-
-2. The real point of this section is to learn `import`, which is where Python really starts to get interesting. Python comes with many libraries (importable collections of code), written by others that can be pulled into your program, allowing you to use that functionality. In this challenge, do a little research on Python libraries that might solve a problem for you or address a domain that you're interested in.
+The real point of this section is to learn `import`, which is where Python really starts to get interesting. Python comes with many libraries (importable collections of code), written by others that can be pulled into your program, allowing you to use that functionality. In this challenge, do a little research on Python libraries that might solve a problem for you or address a domain that you're interested in.
 
 Think of something you're interested in doing (statistics, text analysis, web scraping, quantitative analysis, processing Excel/PDF/image files) and search google "<_thing you are interested in_> python library". You're almost certain to find some useful results. For example, if you wanted to find Python libraries for dealing with cleaning up HTML files, you might search one of these:
 
@@ -1397,22 +1387,6 @@ Think of something you're interested in doing (statistics, text analysis, web sc
 
 In your research, you may also want to look at the libraries that come with Python. You can find a list of libraries in these libraries [here](https://docs.python.org/3/py-modindex.html).
 
-## Solution
-
-1. Here's how you could add a `while` loop to our positive saying generator:
-
-<CodeEditor>
-import random
-while True:
-    motivational_phrases = [
-        "Importing modules is easy!",
-        "Programming! Yay!",
-        "You write lists like a pro!",
-        ]
-    # Because this is input, the user will need to hit enter to see a new phrase
-    input(random.choice(motivational_phrases))
-</CodeEditor>
-
 ## Evaluation
 
 What is a module? Select all that apply:
@@ -1420,7 +1394,6 @@ What is a module? Select all that apply:
 <Quiz>
 - A module is a file of code.*
 - Applications can incorporate many different modules.*
-- A module needs to be downloaded and installed.
 - A module needs to be imported with an `import` statement.*
 </Quiz>
 
