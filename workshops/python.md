@@ -404,6 +404,8 @@ As an example, type the following in the Python REPL below:
 
 `print(not_a_variable)`
 
+<PythonREPL/>
+
 You should receive a Traceback error, indicating that we have not declared the variable `not_a_variable`. Traceback errors try to tell you a little about what happened in the program that caused the problem, including the category of error, such as `NameError` or `TypeError`.
 
 ## Debugging
@@ -574,20 +576,15 @@ Our functions do not have to be "mathematical" in nature. Let's say that I wante
 
 `greet()`
 
-<CodeEditor uploads='mobydick.txt, aesop.txt'></CodeEditor>
-
 First we define our `greet()` function, and add a line to print to the screen. Lastly, we call the function so it will run. You might have noticed that this time, we didn't pass in an argument! Note that a function doesn't have to take an input (or argument), or it can take several arguments! There is a lot of flexibility involved in writing your own functions, which you can craft carefully to do exactly what you want them to! Read more about some of the many things you can do with functions on the online web tutorial [W3Schools](https://www.w3schools.com/python/python_functions.asp).
 
 ## Challenge
 
-How could we change our greeting function to say hello to a specific person? Hint: your print statement will need to use string interpolation. We did this in "3. Variables" when we assigned y to "hello" `y = "hello"`, and then added `y + " and goodbye"`, which yielded the result `"hello and goodbye"`.
+How could we change our greeting function to say hello to a specific person? **Hint:** your print statement will need to use string interpolation. We did this in "3. Variables" when we assigned y to "hello" `y = "hello"`, and then added `y + " and goodbye"`, which yielded the result `"hello and goodbye"`. Give it a shot in the editor below.
 
 ## Solution
 
 <CodeEditor>
-def greet(person):
-  print("Hello " + person + "! How are you today?")
-greet("Sarah")
 </CodeEditor>
 
 As you can see, the result of calling this function prints `"Hello Sarah! How are you today?"`
