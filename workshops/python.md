@@ -587,8 +587,6 @@ How could we change our greeting function to say hello to a specific person? **H
 <CodeEditor>
 </CodeEditor>
 
-As you can see, the result of calling this function prints `"Hello Sarah! How are you today?"`
-
 ## Evaluation
 
 Which of the following are _not_ true about a function?:
