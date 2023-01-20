@@ -826,7 +826,7 @@ What are different ways for describing what a "for loop" can do?
 <Quiz>
 - for each item in a list, multiply it against itself.*
 - print the contents of a list.*
-- add a new item to a list.
+- repeat a section of code a certain number of times.*
 </Quiz>
 
 ## Keywords
@@ -876,7 +876,7 @@ Now, if you were to change the `field` variable, you could run other blocks of c
 
 ## Challenge
 
-Add two more `elif` statements to the program to make it better able to handle different potential fields of study. Change the field of study a couple of times, making sure to save after each change, to test out your code.
+Add two more `elif` statements to the program to make it better able to handle different potential fields of study. Change the field of study a couple of times, making sure to run after each change, to test out your code.
 
 <CodeEditor>
 field = "Media Studies"
@@ -952,15 +952,7 @@ hey you!
 
 Python has saved your input text to the variable `greeting`. When you type in `greeting`, it will print out that input text. Pretty nifty, right?
 
-```pycon
->>> greeting = input()
-hey you!
-
->>> greeting
-'hey you!'
-```
-
-You can play around with `input()` by adding some prompt text within the parenthesis. Whatever you put inside the parenthesis, enclosed by quotes, will prompt the user to type in their text, which is then assigned to the variable set to `input()`. Sounds complicated, so give it some practice with the REPL. 
+You can add more context to your `input()` by adding some prompt text within the parentheses. Whatever you put inside the parentheses, enclosed by quotes, will prompt the user to type in their text, which is then assigned to the variable set to `input()`. Sounds complicated, so give it some practice with the REPL. 
 
 For instance, if we were to type the following:
 
@@ -1051,6 +1043,8 @@ You'll see that we have a couple of new things happening with symbols.
 - First, the period `.` which is an _operator_ in Python. The period operator is another part of object-oriented-programming, and it basically means that we are applying a task to whatever precedes the period. In this case, we are applying the `sort()` method to our `library` list. It's kind of like attaching a function to our `library`.
 - Second, we have the parenthesis `()` after `sort`. When you get more comfortable with programming, you'll often use the parentheses to include what we call _arguments_ that allows us to do more complex things to data. Let's see how an argument works with the `append()` method.
 
+## Adding Items to a List
+
 What if we want to add items to the list? We can use the `append()` method for that. For instance, try the following:
 
 <CodeEditor>
@@ -1073,13 +1067,21 @@ print(library)
 
 The last item that you added to your list should be missing from the `library` when you print the list.
 
+One nifty thing about `pop()`, however, is that it also _returns_ the item that it removes. So, if you wanted to save the item that you removed, you could do something like this:
+
+```python
+library = ["Orlando", "Confessions of the Fox", "These Waves of Girls", "La Frontera", "Dawn"]
+last_book = library.pop()
+print(last_book)
+```
+
+Printing `last_book` will return the last item in the list, `"Dawn"`.
+
 ## Challenge
 
 Remember the `input()` function from the last lesson? This challenge uses that function in combination with what you know about list methods to create a little library app. You will play around with the input button, asking the user what kinds of things they want to do with their library, and writing some code that does those things and prints out the results.
 
-First, create a new file called `library.py`. Save it to your current working folder.
-
-Second, create a list of `library` books, with at least three books (you can use the same ones as before).
+First, create a list of `library` books, with at least three books (you can use the same ones as before).
 
 ```python
 library = ["Orlando", "Confessions of the Fox", "These Waves of Girls"]
@@ -1113,7 +1115,7 @@ After adding a few more conditions, test out your code! You should have a little
 
 ```python
 library = ["Orlando", "Confessions of the Fox", "These Waves of Girls"]
-response = input("What do you want to do with your books today? ")
+response = input("What do you want to do with your books today? 'sort', 'add', or 'remove'?")
 if response == "sort":
     library.sort()
     print(library)
@@ -1135,7 +1137,7 @@ Select the following statements that truly describe `sort()`, `append()`, and `p
 - methods are like functions which are attached to objects.*
 - `sort()`, `append()`, and `pop()` are functions.
 - `append()` always takes an argument.*
-- `pop()` can be applied to a string.
+- `pop()` always takes an argument.
 </Quiz>
 
 &nbsp;
@@ -1217,38 +1219,34 @@ This new script should handle any combination of upper or lowercase characters. 
 
 There's no shame in googling for answers! Error messages are especially useful to google when you run into them. Keep an eye out for _Stack Overflow_ answers, as they tend to have useful examples. The [official Python documentation](https://docs.python.org/3/) will also frequently come up, but I would recommend avoiding it as a resource until you have more programming experience. It's a great resource, but the way information is presented can be confusing until you get the hang of reading documentation.
 
-Before moving on to the next section, complete the first challenge below. This challenge will teach the skills necessary to complete write more advanced scripts in this workshop.
+Before moving on to the next section, complete the challenge below. This challenge will teach the skills necessary to complete write more advanced scripts in this workshop.
 
 ## Challenge
 
-__Note:__ the first challenge is "required" in order to complete further sections.
+Let's use a new type of loop, the `while` loop, to make our library app more interactive. We'll use a `while` loop to keep asking the user for input until they type `exit`.
 
-1. We are going to use `while` loops to get Python to repeat loops over and over again. This involves adding a `while` statement to your library app. The code should look like this, and it goes right after the `library` list and before your `input` statement.
+A typical `while` loop looks like this:
 
-    ```python
-    while True:
-        ...
-    ```
+```python
+while condition:
+    # do something
+```
 
-    Make sure that everything under `while True:` is indented (this creates a "code block," or a group of lines that will be executed together)
+We are going to use `while` loops to get Python to repeat loops over and over again. This involves adding a new variable to use as a condition, and a `while` statement. The code should look like this, and it goes right after the `library` list and before your `input` statement.
 
-    Note: If you are using your terminal and need to stop the loop, you can press <kbd>control</kbd> + <kbd>c</kbd>. This stops the program from being run, what we call "interrupting" the program. You can also add a `break` statement somewhere in your code which will automatically exit the program. For example:
+```python
+user_exit = False
+while user_exit == False:
+    ...
+```
 
-    ```python
-        if response == "sort":
-            library.sort()
-            print(library)
-            break
-        ...
-        else:
-            print("I don't know what you want me to do!")
-    ```
+Make sure that everything under `while True:` is indented (this creates a "code block," or a group of lines that will be executed together). The `while` loop will keep running until the `user_exit` condition is no longer `False`. Our plan is to make it so that when the user types `exit`, the `user_exit` condition will be `True`, and the loop will stop running.
 
-    Try adding the `while` loop to the program below:
-
+Give it a shot! Try adding the condition and `while` loop to the program below:
 
 <CodeEditor>
 library = ["Orlando", "Confessions of the Fox", "These Waves of Girls"]
+# add a new variable condition and while loop here
 response = input("What do you want to do with your books today? ")
 response = response.lower()
 if response == "sort":
@@ -1260,49 +1258,38 @@ elif response == "add":
 elif response == "remove":
     library.pop()
     print(library)
+# add an exit condition here
 else:
     print("I don't know what you want me to do!")
 </CodeEditor>
 
 Once you get the loop to work, you can add more `elif` statements to add more books to the list. Then, run the program, adding books, sorting them and removing them. You can read more about `while` loops [here](https://www.w3schools.com/python/python_while_loops.asp).
 
-2. (optional) OK, I told you not to look at the Python documentation. But doesn't that make you really want to go look at the Python documentation? How bad could this "documentation" really be? What terrible secrets might it hold?
-
-    Fine. Have a look at the [Python documentation on built-in functions](https://docs.python.org/3/library/functions.html). Don't say I didn't warn you.
-
 ## Solution
 
 1. Here's how you would include a `while` statement in our library application:
 
-    ```python
-    library = ["Orlando", "Confessions of the Fox", "These Waves of Girls"]
-    while True:
-        response = input("What do you want to do with your books today? ")
-        response = response.lower()
-        if response == "sort":
-            library.sort()
-            print(library)
-        elif response == "add":
-            library.append("La Frontera")
-            print(library)
-        elif response == "add again":
-            library.append("In the Dreamhouse")
-            print(library)
-        elif response == "more books":
-            library.append("Giovanni's Room")
-            print(library)
-        elif response == "moar":
-            library.append("Nightwood")
-            print(library)
-        elif response == "remove":
-            library.pop()
-            print(library)
-        elif response = "exit":
-            print(library)
-            break
-        else:
-            print("I don't know what you want me to do!")
-    ```
+```python
+library = ["Orlando", "Confessions of the Fox", "These Waves of Girls"]
+user_exit = False
+while user_exit == False:
+    response = input("What do you want to do with your books today? ")
+    response = response.lower()
+    if response == "sort":
+        library.sort()
+        print(library)
+    elif response == "add":
+        library.append("La Frontera")
+        print(library)
+    elif response == "remove":
+        library.pop()
+        print(library)
+    elif response == "exit":
+        print(library)
+        user_exit = True
+    else:
+        print("I don't know what you want me to do!")
+```
 
 ## Evaluation
 
@@ -1368,7 +1355,7 @@ motivational_phrases = [
     ]
 </CodeEditor>
 
-Now, each time you run the code, you should see a different motivational phrase as output. The `random.choice` function chooses a random item from a list and returns it. The `.` syntax indicates that the function is coming from the `random` library.
+Now, each time you run the code, you should see a different motivational phrase as output. The `random.choice` method chooses a random item from a list and returns it. The `.` syntax indicates that the method is coming from the `random` library.
 
 ## Challenge
 
