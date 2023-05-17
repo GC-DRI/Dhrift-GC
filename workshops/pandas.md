@@ -60,18 +60,27 @@ resources:
 
 # Preparing your workspace and folders
 
-In the following workshop, we are going to learn how to work with the Pandas package in order to wrangle, clean, analyze, and visualize our data. To interact with the Python Pandas package, we will use Jupyter Notebook. A [Jupyter notebook](https://jupyter.readthedocs.io/en/latest/install.html#jupyter-notebook-interface) is a document that can combine live programming code, text, images, and pretty displays of data all in the same place. While it may seem like Jupyter Notebook is running from a website, it can actually be executed on a local desktop requiring no internet access or can be installed on a remote server and accessed through the internet. Review [Short Introduction to Jupyter Notebooks](https://curriculum.dhinstitutes.org/insights/short-introduction-to-jupyter-notebooks/) for more details. 
+## Preparing your workspace and folders
 
-We will go deeper into Jupyter Notebook in the following section. For now, let’s create a “pandas_workshop” folder on our Desktop. Keeping all your files for a particular project in a designated file directory will keep your project organized and will make it easier to read in your files. 
+To begin, let’s create a “pandas_workshop” folder on our Desktop. Keeping all your files for a particular project in a designated file directory will keep your project organized and will make it easier to read in your files. You can create a folder manually by navigating to your Desktop and selecting create new folder. Or, you can use the command line: 
 
-[Download](https://drive.google.com/drive/folders/17cAPHux4ileepqNce_5FdYoQaopK3wO5?usp=sharing) the “refugee-arrivals-by-destination” CSV file and save it in the “pandas_workshop” folder on your Desktop. 
+```bash
+cd Desktop
+mkdir pandas_workshop
+
+```
+
+Next, download the **[“refugee-arrivals-by-destination” CSV file](https://drive.google.com/drive/folders/17cAPHux4ileepqNce_5FdYoQaopK3wO5?usp=sharing)** and save it in the “pandas_workshop” folder on our Desktop. You can use the command line to do this:
+```bash
+cd ~/Downloads
+mv refugee-arrivals-by-destination.csv ~/Desktop/pandas_workshop
+cd ~/Desktop/pandas_workshop
+ls
+```
 
 We’ve also saved all of the code for this section in a [Jupyter Notebook file](https://drive.google.com/drive/folders/1wWfkCOdx_ynex7W9Q_hh-WvSdM2wy3kB?usp=sharing). You should download it and save it in your “pandas_workshop” folder on your Desktop. In this file you will find all of the workshop commands and the expected outputs. If you ever feel stuck or can’t seem to be able to advance in the workshop, you can open this file and see how we did it. 
 
 For the best possible experience, we suggest/encourage you to:
-
-
-
 * Create an .ipynb file and follow the workshop typing all the code yourself.
 * Avoid copying/pasting the code. Much of learning has to do with you typing yourself.
 * Only check the PandasWorkshop.ipynb file if you get lost or if you are not able to get the right output. Before opening it, put some time trying to figure out by yourself why it isn’t working. A big part of coding is learning to identify what we are doing wrong.
