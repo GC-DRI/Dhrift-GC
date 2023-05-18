@@ -1,5 +1,5 @@
 ---
-title: 'Introduction to Data Wrangling, Cleaning, and Analysis with Python and Pandas'
+title: 'Data Manipulation in Pandas and Python'
 excerpt: 'In this workshop, we are going to learn some basic commands in [Pandas](https://pandas.pydata.org/pandas-docs/stable/getting_started/overview.html), an expansive Python library for working with tabular data like CSV files. You can think of Pandas as a more powerful version of Excel that operates within the Python environment, where you can wrangle, clean, analyze, and visualize data. Knowing how to use Pandas is important if you plan on working with datasets that include qualitative and/or quantitative data points.'
 cover_image: '/images/workshops/img7.jpg'
 
@@ -7,9 +7,8 @@ learning objectives:
     - Import Pandas and read in a CSV file as a DataFrame
     - Explore your data, including displaying and sampling the data
     - Clean your data, including checking for duplicates and converting data types
-    - Review and interpret summary statistics
     - Filter your data, including renaming, selecting, dropping, and adding columns
-    - Analyze your data by sorting columns, grouping columns, and counting values
+    - Analyze your data by sorting columns, grouping columns, and summing values
     - Visualize your data with basic bar charts, pie charts, and time series
     - Write a DataFrame to a CSV file
     - Build your Pandas skills with the Pandas documentation and other resources
@@ -603,7 +602,8 @@ Let’s break this command down:
 
 * We have two stacked methods here: .groupby() and .sum()
 * groupby('year')['arrivals']: For the Groupby object, groupby(year), we are isolating the “arrivals” column. Basically, we are asking to view the number of refugee arrivals by year. 
-* .sum(): This method returns the sum of the values over the requested axis. In our case, it will calculate the total number of refugee arrivals per year.  
+* .sum(): This method returns the sum of the values over the requested axis. In our case, it will calculate the total number of refugee arrivals per year.
+* We store our results in the `total_arrivals_by_year` variable  
 
 Finally, we can add the .plot() method to create a line chart. 
 
