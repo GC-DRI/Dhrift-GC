@@ -227,6 +227,7 @@ refugee_df.sample(15)
 ```
 We can tell it's a random sample since the index numbers are completly disorganized. 
 
+
 ## Keywords:
 
 - head(): head() is a method in the Pandas library that will display the top _n_ rows of a DataFrame.
@@ -302,13 +303,13 @@ Keeping this in mind, it looks as though the data type for the year column is a 
 
 
 ```python
-refugee_df['year'] = pd.to_datetime(refugee_df['year'])
+refugee_df['year'] = pd.to_datetime(refugee_df['year'], format = "%Y")
 ```
 
 
-This command says: for the “year” column in the “refugee_df” DataFrame, use the `to_datetime` method in the Pandas library to convert the values in the “year” column in the “refugee_df” DataFrame to datetime data types. 
+This command says: for the “year” column in the “refugee_df” DataFrame, use the `to_datetime` method in the Pandas library to convert the values in the “year” column in the “refugee_df” DataFrame to datetime data types. In this case, we need to specify the format "%Y" for just year since this is the format the data is given to us. 
 
-We can then check to see if the data type was properly converted using the `.dtypes` object, which is similar to the .info() method, except it only provides information on data types.
+We can then check to see if the data type was properly converted using the `.dtypes` object, which is similar to the `.info()` method, except it only provides information on data types.
 
 
 ```python
@@ -320,7 +321,7 @@ As we can see, the data in the “year” column was successfully transformed in
 
 ## Check for duplicate rows
 
-As part of our data cleaning process, we want to check for duplicate rows. We can do this by using the `.duplicated()` method inside a filter to isolate only the rows in the DataFrame that are exact duplicates. Filtering data by certain values is similar to selecting columns.
+As part of our data cleaning process, we want to check for duplicate rows. We can do this by using the `.duplicated()` method inside a filter to isolate only the rows in the DataFrame that are exact duplicates. Filtering data by certain values is similar to selecting columns. We add the parameter `keep=False`, which will display all the duplicated values in the dataset — rather than just the first duplicated value keep='first' or the last duplicated value keep='last'.
 
 
 ```python
@@ -329,7 +330,7 @@ refugee_df[refugee_df.duplicated(keep=False)]
 
 Looks like we have a few duplicate rows in our dataset. 
 
-To remove those duplicates, we can use the `.drop_duplicates()` method to drop duplicates from the DataFrame and select to keep the first instance of the duplicate or the last instance: 
+To remove those duplicates, we can use the `.drop_duplicates()` method to drop duplicates from the DataFrame and select to keep the first instance of the duplicate or the last instance:
 
 
 ```python
@@ -355,34 +356,9 @@ Great news! We successfully removed our duplicate rows!
 - duplicated(): The .duplicated() method in Pandas checks for duplicate rows.
 
 - drop_duplicates(): The .drop_duplicates() method in Pandas drops duplicate rows.
+-  
 
-# Summary statistics
-
-## Calculate summary statistics
-
-To calculate the summary statistics for the columns in our DataFrame, we can use the .describe() method. However, this will only compute columns with numerical data. If we want to include all columns, we can add “include=‘all’”. We also want to specify datetime_is_numeric=True to treat the datetime values as numeric. 
-
-
-```python
-refugee_df.describe()
-```
-
-
-```python
-refugee_df.describe(include='all', datetime_is_numeric=True)
-```
-
-What can we glean from these summary statistics? 
-
-
-
-* Looking at the year column, we get confirmation that our data starts in 2005 and ends in 2015. 
-* Looking at the origin column, we learn that refugees that were resettled in the U.S. during the 2005 - 2015 period came from 113 unique countries of origin, with Iraq being the most common country of origin. 
-* Looking at the dest_state column, we learn that California is the state where most refugees resettled during the 2005 - 2015 period. We also notice that there are 52 unique states in the dataset, which may include Washington D.C. and Puerto Rico. We will need to investigate this further in a moment. 
-* Looking at the dest-city column, we can see that, among the 2,850 unique cities, Denver is the city that resettled the highest number of refugees during the 2005 - 2015 period.
-* Looking at the arrivals column, we can see that the average mean resettlement of refugees by country, per year, per state/city location was 5.5, which is to say about 5-6 refugees on average. The max number of refugees resettled from the same country, in the same year, to the same state/city location was 2,813. 
-
-# Rename, select, drop, and add new columns
+# Rename, select, drop, filter and add new columns
 ## See list of columns
 
 To see a full list of the columns in our DataFrame, we can run the following command:
@@ -396,10 +372,9 @@ Our DataFrame has relatively few columns, so seeing the full list is not absolut
 
 ## Rename columns
 
-To improve the readability of our dataset, we can rename columns. In our case, let’s rename “dest_state” as “state” and “dest_city” as “city”. We will use the .rename() method and the columns= parameter. Note that in this case we are setting the DataFrame equal to the returned value of the method so as to save the results into the DataFrame.
+To improve the readability of our dataset, we can rename columns. In our case, let’s rename “dest_state” as “state” and “dest_city” as “city”. We will use the `.rename()` method and the columns= parameter. Note that in this case we are setting the DataFrame equal to the returned value of the method so as to save the results into the DataFrame.
 
  
-
 
 ```python
 refugee_df=refugee_df.rename(columns={'dest_state': 'state','dest_city':'city' })
@@ -426,24 +401,43 @@ refugee_df[['state','city']]
 
 ## Drop columns
 
-To remove a column from the DataFrame, we can use the .drop() method and include the column name. In our case, we could drop the “city” column and save the result as a new DataFrame “refugee_drop_df” so we don’t override our original DataFrame. 
+To remove a column from the DataFrame, we can use the `.drop()` method and include the column name. In our case, we could drop the “city” column and save the result as a new DataFrame “refugee_drop_df” so we don’t override our original DataFrame. 
 
 
 ```python
 refugee_drop_df = refugee_df.drop(columns="city")
+refugee_drop_df
+```
+## Filter columns
+
+We can filter a Pandas DataFrame to select only certain values. Filtering data by certain values is similar to selecting columns.
+
+We type the name of the DataFrame followed by square brackets and then, instead of inserting a column name, we insert a True/False condition. For example, to select only rows that contain the value “Iraq”, we could run the following command:
+
+```python
+refugee_iraq_df = refugee_df[refugee_df['origin'] == 'Iraq']
+refugee_iraq_df 
 ```
 
+We stored our results in a new variable `refugee_iraq_df`
 
+## Drop Rows
+If we wanted to exclude all rows containing the value “Iraq”, we could run the following command:
+
+```python
+refugee_drop_iraq_df = refugee_df[refugee_df['origin'] != 'Iraq']
+refugee_drop_iraq_df
+```
 ## Add columns
 
-We can also add columns to the DataFrame. For example, we can add a ‘percent_total’ column to calculate the percentage of total refugee arrivals for each row.   
+We can also add columns to the DataFrame. For example, we can add a `percent_total` column to calculate the percentage of total refugee arrivals for each row.   
 
 
 ```python
 refugee_df['percent_total'] = (refugee_df['arrivals'] / refugee_df['arrivals'].sum())*100
 ```
 
-*_Note: refugee_df['arrivals'].sum() calculates the sum of all the values in the arrivals column._ 
+*_Note: `refugee_df['arrivals'].sum()` calculates the sum of all the values in the arrivals column._ 
 
 
 
@@ -460,31 +454,31 @@ You can read the command we just ran as: create a new column that calculates the
 - Series: Series is a one-dimensional labeled array capable of holding data of any type (integer, string, float, Python objects, etc.)
 
 
-# Sort Columns, Groupby Columns, & Count values
+# Sort Columns, Groupby Columns, & Calculations
 
 ## Stacking requests
 
-In this lesson, we will be using commands that stack various requests such as methods, parameters, operators, and more to define the command. Pandas pencourages this kind of stacking, but it can seem overwhelming at first to beginners. For example, as we will see below, a command could include two or more methods that stack on top of each other, and end with a slice operator to view only the top N rows of the results. In addition, a command can include specific parameters to call out a particular column or to sort the data in descending order. 
+In this lesson, we will be using commands that stack various requests such as methods, parameters, operators, and more to define the command. Pandas encourages this kind of stacking, but it can seem overwhelming at first to beginners. For example, as we will see below, a command could include two or more methods that stack on top of each other, and end with a slice operator to view only the top N rows of the results. In addition, a command can include specific parameters to call out a particular column or to sort the data in descending order. 
 
 We will move slowly through each of the following commands to break them down. 
 
 ## Sort columns
 
-To sort a DataFrame, we can use the .sort_values() method with the parameter by= and including the name of the column we want to sort by written in quotation marks. 
+To sort a DataFrame, we can use the `.sort_values()` method with the parameter by= and including the name of the column we want to sort by written in quotation marks. 
 
-For example, we can sort the DataFrame by the percentages of total refugee arrivals:
+For example, we can sort the DataFrame by the arrivals column:
 
 
 ```python
-refugee_df.sort_values(by='percent_total', ascending=False)[:15]
+refugee_df.sort_values(by='arrivals', ascending=False)[:15]
 ```
 
 
-Note: In the command above, we used the “by=” parameter to specify that the data be sorted according to the “percent_total” column and we added the “ascending=False” parameter in order to request that the data be displayed with the highest percentage first. By default, Pandas will sort in “ascending” order, from the smallest value to the largest value. We also added a Python list slice (i.e., [:15]) to view just the top 15 rows.
+Note: In the command above, we used the `by=` parameter to specify that the data be sorted according to the `arrivals` column and we added the `ascending=False` parameter in order to request that the data be displayed with the highest number first. By default, Pandas will sort in `ascending` order, meaning from the smallest value to the largest value. We also added a Python list slice (i.e., [:15]) to view just the top 15 rows.
 
 ## Groupby Columns
 
-We can group data and perform calculations on the groups using the .groupby() method. For example, to see the breakdown of the number of arrivals by country of origin, we can use the following command:
+We can group data and perform calculations on the groups using the `.groupby()` method. For example, to see the breakdown of the number of arrivals by country of origin, we can use the following command:
 
 
 ```python
@@ -492,13 +486,13 @@ refugee_df.groupby('origin')
 ```
 
 
-This command created a Groupby object—grouped data—that we can use to perform calculations such as counting the number of non-blank values in each column for each arrival by country of origin.
+This command created a Groupby object—grouped data that we can use to perform calculations such as counting the number of non-blank values in each column for each arrival by country of origin.
 
-Next, we will use the following command to count the number of refugee arrivals by country of origin, with the output showing the top twenty rows sorted by descending order:
+Next, we will use the following command to sum the number of refugee arrivals by country of origin, with the output showing the top twenty rows sorted by descending order:
 
 
 ```python
-refugee_df.groupby('origin')['arrivals'].count().sort_values(ascending=False)[:20]
+refugee_df.groupby('origin')['arrivals'].sum().sort_values(ascending=False)[:20]
 ```
  
 
@@ -510,37 +504,32 @@ Let’s unpack the command to better understand these results:
 
 * We have three stacked methods here: .groupby(), .count(), and .sort_values(). 
 * groupby('origin')['arrivals']: For the Groupby object we defined in the previous step, groupby(‘origin’), we are isolating the “arrivals” column. Basically, we are asking to view the number of refugee arrivals by country of origin. 
-* .count(): This method counts non-blank cells for each column or row. The results we see in the output show the total number of refugee arrivals by country of origin. 
+* .sum(): This method adds non-blank cells for each column or row. The results we see in the output show the total number of refugee arrivals by country of origin. 
 * .sort_values(ascending=False): This method specifies how we want our output to be sorted. We include the ascending=False parameter in order to request that the data be displayed with the highest percentage first.
 * [:20]: This Python slide specifies that we just want to see the top 20 rows.
 
-## Count values
-
-We can count the number of unique values in a column by using the .value_counts() method.
-
+## Convert Series Object to Dataframe
+You will notice that our output is not a Dataframe. Instead, it's a Series Object, which doesn't allow us to select data or make further calculations on the data. We can convert it to a Dataframe by first storing the command above in a new variable and stacking two extra commands" `to_frame` and `reset_index`:
 
 ```python
-refugee_df['state'].value_counts()
+ref_sum_df=refugee_df.groupby('origin')['arrivals'].sum().sort_values(ascending=False)[:20]
+ref_sum_df = ref_sum_df.to_frame().reset_index()
+ref_sum_df
 ```
 
-
-These results show us how many refugees were resettled in each state across the 2005-2015 period. We can see the full list of states noted in the DataFrame, and these include the District of Columbia, Puerto Rico and Guam. We can also note that Wyoming is missing from the list, which can be confirmed by filtering the DataFrame to select only certain values. 
-
-
-```python
-refugee_df[refugee_df['state'] == 'Wyoming']
-```
 
 
 ## Keywords:
 
-- sort_values(): Use the .sort_values() method to sort the data within a column in your DataFrame
+- sort_values(): Use the `.sort_values()` method to sort the data within a column in your DataFrame
 
-- groupby(): Use the .groupby() method to group data and perform calculations on the groups in your DataFrame 
+- groupby(): Use the `.groupby()` method to group data and perform calculations on the groups in your DataFrame 
 
-- count(): Use the .count() method to count non-blank cells for each column or row.
+- sum(): Use the `.sum()` method to add non-blank cells for each column or row.
 
-- value_counts(): Use the .value_counts() method to count the number of unique values in a column.
+- to_frame(): Use the `.to_frame()` method to convert a one dimensional Series Object into a two-dimensional Dataframe
+
+
 
 # Basic data visualizations
 
@@ -559,35 +548,40 @@ We can specify the title with the title= parameter and the kind of plot by alter
 * ‘hexbin’ for hexagonal bin plots
 * ‘pie’ for pie plots
 
+## Bar Charts
 For example, we can visualize the data we got from our Groupby command looking at the total number of refugees by country of arrival as a bar chart:
 
 
 ```python
-refugee_df.groupby('origin')['arrivals'].count().sort_values(ascending=False)[:20].plot(kind='bar', title='Total number of refugee arrivals in the U.S. \n by country of origin')
+ref_sum_df.plot(kind='bar', x= 'origin', y='arrivals', title='Total number of refugee arrivals in the U.S. \n by country of origin')
 ```
 
 Let’s unpack the command to better understand these results:
 
-
-
-* refugee_df.groupby('origin')['arrivals'].count().sort_values(ascending=False)[:20]: This is the same command we used in lesson 7 to count the number of refugee arrivals by country of origin, with the output showing the top twenty rows sorted by descending order: 
-    * We have three stacked methods here: .groupby(), .count(), and .sort_values(). 
-    * groupby('origin')['arrivals']: For the Groupby object we defined in lesson 7, groupby(‘origin’), we are isolating the “arrivals” column. Basically, we are asking to view the number of refugee arrivals by country of origin. 
-    * .count(): This method counts non-blank cells for each column or row. The results we see in the output show the total number of refugee arrivals by country of origin. 
-    * .sort_values(ascending=False): This method specifies how we want our output to be sorted. We include the ascending=False parameter in order to request that the data be displayed with the highest percentage first.
-    * [:20]: This Python slide specifies that we just want to see the top 20 rows.
-* .plot(kind='bar', title='Total number of refugee arrivals in the U.S. \n by country of origin'):
-    * Here we are using the .plot() method to create a visualization, and we are specifying that we want a bar chart with the “kind=’bar’” parameter. We are also giving the chart a title with the “title='Total number of refugee arrivals in the U.S. \n by country of origin'” parameter. 
+* ref_sum_df: This is the variable we created in the previous lesson summing the number of refugee arrivals by country of origin, with the output showing the top twenty rows sorted by descending order
+* .plot(kind='bar', x= 'origin', y='arrivals', title='Total number of refugee arrivals in the U.S. \n by country of origin'):
+    * Here we are using the .plot() method to create a visualization, and we are specifying that we want a bar chart with the “kind=’bar’” parameter. 
+    * We also specify the values for the x axis (orgin) and y axis (arrivals)
+    * We are also giving the chart a title with the “title='Total number of refugee arrivals in the U.S. \n by country of origin'” parameter. 
         * Note: By adding “\n” in the title text, we signify that the text that follows should be on a new line. 
 
+
+## Pie Charts
 We can also visualize the data as a pie chart:
 
 
 ```python
-refugee_df.groupby('origin')['arrivals'].count().sort_values(ascending=False)[:20].plot(kind='pie', title='Total number of refugee arrivals in the U.S. \n by country of origin')
+ref_sum_df.set_index('origin')[:10].plot(kind='pie', y='arrivals', title='Total number of refugee arrivals in the U.S. \n by country of origin')
 ```
+- We start by setting the index of the dataframe to the `origin` column. This ensures that our legend will show the country names. 
+- We slice our results to show just the top 10 countries. This makes our chart more legible. 
+- Next, we use the `.plot()` method, specifying `pie` as the type of plot
+- We also specify the y values - in our case `arrivals`
 
-In this case, the parameter  within the .plot() method specifying the kind of chart we want changed from “bar” in the previous command to “pie”. 
+
+
+
+## Time Series
 
 We can also create time series using the Groupby method. For example, if we wanted to visualize the total number of refugees resettled in the U.S. across the 2005-2015 period, we would first create a Groupby object based on the “year” column (refer back to lesson 7 for more on Groupby objects). 
 
@@ -628,7 +622,7 @@ To output a new CSV file, we can use the .to_csv method with a name for the file
 
 
 ```python
-refugee_df.to_csv("Desktop/pandas_workshop/new_refugee.csv", encoding='utf-8', index=False)
+refugee_df.to_csv("new_refugee.csv", encoding='utf-8', index=False)
 ```
 
 
@@ -656,7 +650,7 @@ Let’s say you wanted to find out more about the .sort_values method we used in
 
 * If you don’t find an answer that makes sense to you on the Pandas documentation page, then look on Google for other resources. Some of our go-to websites for help are [Stack Overflow](https://stackoverflow.com/), [Geeks for Geeks](https://www.geeksforgeeks.org/), and [Data to Fish](https://datatofish.com/). 
 
-_Other resources_
+## Other Resources
 
 
 
