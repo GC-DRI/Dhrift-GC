@@ -60,8 +60,6 @@ resources:
 
 # Preparing your workspace and folders
 
-## Preparing your workspace and folders
-
 To begin, let’s create a “pandas_workshop” folder on our Desktop. Keeping all your files for a particular project in a designated file directory will keep your project organized and will make it easier to read in your files. You can create a folder manually by navigating to your Desktop and selecting create new folder. Or, you can use the command line: 
 
 ```bash
@@ -71,75 +69,81 @@ mkdir pandas_workshop
 ```
 
 Next, download the **[“refugee-arrivals-by-destination” CSV file](https://drive.google.com/drive/folders/17cAPHux4ileepqNce_5FdYoQaopK3wO5?usp=sharing)** and save it in the “pandas_workshop” folder on our Desktop. You can use the command line to do this:
+
 ```bash
 cd ~/Downloads
 mv refugee-arrivals-by-destination.csv ~/Desktop/pandas_workshop
 cd ~/Desktop/pandas_workshop
 ls
 ```
-
-We’ve also saved all of the code for this section in a [Jupyter Notebook file](https://drive.google.com/drive/folders/1wWfkCOdx_ynex7W9Q_hh-WvSdM2wy3kB?usp=sharing). You should download it and save it in your “pandas_workshop” folder on your Desktop. In this file you will find all of the workshop commands and the expected outputs. If you ever feel stuck or can’t seem to be able to advance in the workshop, you can open this file and see how we did it. 
-
-For the best possible experience, we suggest/encourage you to:
-* Create an .ipynb file and follow the workshop typing all the code yourself.
-* Avoid copying/pasting the code. Much of learning has to do with you typing yourself.
-* Only check the PandasWorkshop.ipynb file if you get lost or if you are not able to get the right output. Before opening it, put some time trying to figure out by yourself why it isn’t working. A big part of coding is learning to identify what we are doing wrong.
-* I would also caution you against working with both files open at the same time. It is easy to get confused and start modifying the wrong one. But those are only suggestions. Maybe they will work for you, maybe they won’t, so feel free to do what suits you best. You are in charge here!
-
-# Working with Jupyter Notebook
-
+---
+## Launch your Jupyter Notebook
 To get started with Jupyter notebook, you must first launch Jupyter Notebook from the “Anaconda Navigator” application on your computer. There are two ways to do this:
 
+Find “Anaconda Navigator” in the applications folder on your computer, and double-click on the app to open it.
 
 
-1. Find “Anaconda Navigator” in the applications folder on your computer, and double-click on the app to open it. Once Anaconda Navigator opens, you can launch Jupyter Notebook by clicking the “Launch” button.
-2. OR, launch JupyterLab from a Terminal or Powershell by running: jupyter notebook
+
+Once Anaconda Navigator opens, you can launch Jupyter Notebook by clicking the “Launch” button.
+
+
+
+OR, launch Jupyter Notebook from a Terminal or Powershell by running:
+
+
+```bash
+jupyter notebook
+```
+
+---
+## Creating a new Jupyter notebook file
 
 Once you’ve launched Jupyter Notebook, you can create the Jupyter notebook file to run the workshop. From the Jupyter Home Tab in your Browser, find the  “pandas_workshop” folder saved on your Desktop, and start a New Python Notebook using the New button in the upper right corner. Running and saving your Jupyter Notebook from the same directory as your file will keep your project organized and will make it easier to read in your files. 
 
 
 
+---
+
+## Naming your Jupyter notebook file
+
 Even though Jupyter Notebook doesn’t force you to do so, it is very important to name your file, or you will end up later with a bunch of untitled files and you will have no idea what they are about. In the top left, click on the word Untitled and give your file a name such as “intro_pandas”.
 
-# Getting started with Pandas
-## Importing the Pandas library
 
-In the first blank cell, type the following command to import the Pandas library into our Jupyter Notebook:
+# Getting started with Pandas
+
+* Pandas is a Python software library
+* The name is derived from the term "panel data", an econometrics term for data sets that include observations over multiple time periods for the same individuals
+* You can think of it as a FREE equivalent to Stata or SPSS for data manipulation and analysis. It is also more powerful than Excel
+* Knowing how to use Pandas is important if you plan on working with data organized in spreadsheets (either quantitative or qualitative)
+
+
+# Import Pandas
+
+In the first blank cell, type the following command to import the Pandas library into our Jupyter Notebook. To run the command, you can click the “Run” button in the top toolbar, or you can click shift + return. 
 
 ```python
 import pandas as pd
 ```
-
-
-
-To run the command, you can click the “Run” button in the top toolbar, or you can click shift + return. 
-
 This import statement not only imports the Pandas library but also gives it the alias “pd.” Using this alias will save us from having to type out the entire word “Pandas” each time we need to use it. Libraries are sets of instructions that Python can use to perform specialized functions. 
-
-By default, Pandas will display 60 rows and 20 columns. However, we can change those settings if we want to see more rows and columns. For this workshop, let’s set the display settings to include 100 rows
-
-
-```python
-pd.options.display.max_rows = 100
-```
 
 
 If you don’t see an error when you run the notebook—that is, if there is no output—you can move on to the next step. It is not rare in programming that when you do things right, the result will be nothing happening. This is what we like to call a silent success.
 
-## Read in a CSV file as a DataFrame
+---
+
+# Read in a CSV file as a DataFrame
 
 Next, we will read in our dataset saved as a CSV file. We will specifically work with the refugee-arrivals-by-destination.csv dataset. You want to make sure you save the dataset in the same location as your Jupyter Notebook, in this case the pandas_workshop folder saved on your Desktop. 
-
-To read in a CSV file, we will use the method pd.read_csv() and insert the name of our desired file path.
 
 
 ```python
 refugee_df = pd.read_csv('refugee-arrivals-by-destination.csv', delimiter=",", encoding='utf-8')
 ```
 
-With this command, we have created a Pandas DataFrame object, which is a 2-dimensional labeled data structure with columns of different types. You can think of it like a spreadsheet or SQL table, or a dict of Series objects. 
-
-It is common practice to abbreviate DataFrame with “df”, as in refugee_df.  When reading in the CSV file, we also specified the encoding and delimiter. The delimiter specifies the character that separates or “delimits” the columns in our dataset. For CSV files, the delimiter is usually a comma. UTF is “Unicode Transformation Format”, and ‘8’ means 8-bit values are used in the encoding. It is one of the most efficient and convenient encoding formats among various encodings. In Python, strings are by default in utf-8 format which means each alphabet corresponds to a unique code point. Setting the encoding format ensures our strings are uniform. 
+- With this command, we have created a **Pandas DataFrame** object, which is a 2-dimensional labeled data structure with columns of different types. You can think of it like a spreadsheet or SQL table, or a dictionary of Series objects. 
+- It is common practice to abbreviate DataFrame with “df”, as in refugee_df.  
+- When reading in the CSV file, we also specified the encoding and delimiter. The delimiter specifies the character that separates or “delimits” the columns in our dataset. For CSV files, the delimiter is usually a comma but it can also be a tab. 
+- UTF is “Unicode Transformation Format”, and ‘8’ means 8-bit values are used in the encoding. It is one of the most efficient and convenient encoding formats. In Python, strings are by default in utf-8 format which means each alphabet corresponds to a unique code point. Setting the encoding format ensures our strings are uniform.
 
 ## Python Methods and Attributes
 
@@ -173,19 +177,22 @@ refugee_df
 Let’s take a look at a few elements in this DataFame: 
 
 
+
 * Index
     * The bolded ascending numbers in the very left-hand column of the DataFrame is called the Pandas Index. You can select rows based on the Index.
     * By default, the Index is a sequence of numbers starting with zero. However, you can change the Index to something else, such as one of the columns in your dataset.
-    * The index is a Unique ID
+    * The default index is a Unique ID - that being said, the index does not have to be a Unique ID. You can set your index to be any column in your Dataframe
 * Truncation
-    * The DataFrame is truncated, signaled by the ellipses in the middle ... of every column.
-    * The DataFrame is truncated because we set our default display settings to 100 rows. Anything more than 100 rows will be truncated. To display all the rows, we would need to alter Pandas’ default display settings again.
+    * The DataFrame is truncated, signaled by the ellipses in the middle … of every column.
+    * The DataFrame is truncated because by default, Pandas will display 60 rows and 20 columns. You can change these default settings see [documentation](https://pandas.pydata.org/pandas-docs/stable/user_guide/options.html)
 * Rows x Columns
     * Pandas reports how many rows and columns are in this dataset at the bottom of the output. Our DataFrame has 121,245 rows × 5 columns.
 * NAN
     * NaN is the Pandas value for any missing data. 
 
-We can also display the first _n_ rows of the DataFrame with the .head() method
+## Display a selection of the Dataframe
+
+We can also display the first _n_ rows of the DataFrame with the `.head()` method
 
 
 ```python
@@ -196,13 +203,29 @@ refugee_df.head(2)
 refugee_df.head(15)
 ```
 
-We can also look at a random sample of data with the .sample() method
+We can accomplish the same task using a slice instead:
+```python
+refugee_df[:2]
+```
+We can also display the last 10 rows of the DataFrame with the `.tail()` method:
+```python
+refugee_df.tail(10)
+```
+
+We can accomplish the same task using a slice instead:
+```python
+refugee_df[-10:]
+```
+
+---
+## Display a random sample of the Dataframe
+We can also look at a random sample of data with the `.sample()` method
 
 
 ```python
 refugee_df.sample(15)
 ```
-
+We can tell it's a random sample since the index numbers are completly disorganized. 
 
 ## Keywords:
 
@@ -212,11 +235,11 @@ refugee_df.sample(15)
 
 - NaN: NaN is the Pandas value for any missing data.
 
-# Lesson 5: Basic data cleaning
+# Basic data cleaning
 
 ## Data types
 
-We can get information about the columns in the DataFrame by using the .info() method.
+We can get information about the columns in the DataFrame by using the `.info()` method.
 
 
 ```python
@@ -275,27 +298,17 @@ Pandas uses a different lexicon to describe data types from those we learned in 
 
 ## Converting data types
 
-Keeping this in mind, it looks as though the data type for the year column is a “int64” instead of being “datetime64.” 
-
-First, let’s define a new variable for the year columns in “refugee_df” DataFrame. 
+Keeping this in mind, it looks as though the data type for the year column is a “int64” instead of being “datetime64.” We can run the command below to convert the data type:
 
 
 ```python
-refugee_int = refugee_df['year']
+refugee_df['year'] = pd.to_datetime(refugee_df['year'])
 ```
 
 
-Next, we can run the command below to convert the data type:
+This command says: for the “year” column in the “refugee_df” DataFrame, use the `to_datetime` method in the Pandas library to convert the values in the “year” column in the “refugee_df” DataFrame to datetime data types. 
 
-
-```python
-refugee_df['year'] = pd.to_datetime(refugee_df['year'], format='%Y')
-```
-
-
-This command says: for the “year” column in the “refugee_df” DataFrame, use the “to_datetime” method in the Pandas library to convert the values in the “year” column in the “refugee_df” DataFrame, as defined by the variable “refugee_int”,  to datetime data types, using the format “%Y” for just year (as opposed to %Y%m%d, which would also include the month and day). 
-
-We can then check to see if the data type was properly converted using the .dtypes object, which is similar to the .info() method, except it only provides information on data types.
+We can then check to see if the data type was properly converted using the `.dtypes` object, which is similar to the .info() method, except it only provides information on data types.
 
 
 ```python
@@ -307,7 +320,7 @@ As we can see, the data in the “year” column was successfully transformed in
 
 ## Check for duplicate rows
 
-As part of our data cleaning process, we want to check for duplicate rows. We can do this by using the .duplicated() method inside a filter to isolate only the rows in the DataFrame that are exact duplicates. Filtering data by certain values is similar to selecting columns.
+As part of our data cleaning process, we want to check for duplicate rows. We can do this by using the `.duplicated()` method inside a filter to isolate only the rows in the DataFrame that are exact duplicates. Filtering data by certain values is similar to selecting columns.
 
 
 ```python
@@ -316,7 +329,7 @@ refugee_df[refugee_df.duplicated(keep=False)]
 
 Looks like we have a few duplicate rows in our dataset. 
 
-To remove those duplicates, we can use the .drop_duplicates() method to drop duplicates from the DataFrame and select to keep the first instance of the duplicate or the last instance: 
+To remove those duplicates, we can use the `.drop_duplicates()` method to drop duplicates from the DataFrame and select to keep the first instance of the duplicate or the last instance: 
 
 
 ```python
