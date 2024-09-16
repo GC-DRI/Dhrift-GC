@@ -266,7 +266,7 @@ Pandas uses a different lexicon to describe data types from those we learned in 
    </td>
    <td>String or mixed
    </td>
-   <td>Text or mixed numeric and non-numeric values
+   <td>Text or mixed numeric and non-numeric values 
    </td>
   </tr>
   <tr>
